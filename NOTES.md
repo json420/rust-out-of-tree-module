@@ -12,12 +12,25 @@ Compile and install t like this:
 
 ```
 make
-sudo make modules_install
-sudo insmod /lib/modules/`uname -r`/updates/rust_out_of_tree.ko
+sudo insmod rust_out_of_tree.ko
 ```
 
 Then to unload the module like this:
 
 ```
 sudo rmmod rust_out_of_tree
+```
+
+You can watch the output from the `pr_info!()` macro like this:
+
+
+```
+sudo dmesg -w
+```
+
+Once you're in the grove, it's handy to have `dmesg -w` running in one terminal and then run this
+each time you need to test a change:
+
+```
+make && sudo rmmod rust_out_of_tree && sudo insmod rust_out_of_tree.ko
 ```
