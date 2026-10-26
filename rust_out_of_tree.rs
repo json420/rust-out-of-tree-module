@@ -2,6 +2,7 @@
 
 //! Rust out-of-tree sample
 
+use kernel::cpu;
 use kernel::prelude::*;
 
 module! {
@@ -19,6 +20,7 @@ struct RustOutOfTree {
 impl kernel::Module for RustOutOfTree {
     fn init(_module: &'static ThisModule) -> Result<Self> {
         pr_info!("Rust out-of-tree sample (init)\n");
+        pr_info!("Number of CPUS: {}\n", cpu::nr_cpu_ids());
 
         let mut numbers = KVec::new();
         numbers.push(72, GFP_KERNEL)?;
