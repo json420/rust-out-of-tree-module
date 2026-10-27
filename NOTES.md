@@ -1,23 +1,25 @@
 # Things I'm learning along the way
 
-## If you want to build on Ubuntu agaist the prebuild Ubuntu kernel
+## Exact steps for Ubuntu 26.04, 26.10
 
-From a fresh Ubuntu 26.04 istall you will need to install the following packages:
+The quickest and easist first step is to build an out of tree module for the distribution kernel
+you are already running. To do this, you will need to build your module using the same rust version
+the distribution kernel was built with.
+
+So on Ubuntu, that means builing your module with the rust version packaged in Ubuntu rather than
+the latest and greatest installed with rustup.
+
+From a fresh Ubuntu 26.04 install you will need to install the following packages, including the
+correct `linux-lib-rust-VERSION` package:
 
 ```
-sudo apt-get install git build-essential rustc pahole linux-lib-rust-7.0.0-38-generic
+sudo apt-get install git build-essential rust-all pahole linux-lib-rust-`uname -r`
 ```
 
-```
-sudo apt-get install git build-essential rustc pahole linux-lib-rust-`uname -r`
-```
-You need to install the correct `linux-lib-rust-VERSION` package:
+Which will install something like `linux-lib-rust-7.0.0-38-generic` for the
+`linux-lib-rust-VERSION` package.
 
-```
-sudo apt-get install linux-lib-rust-`uname -r`
-```
-
-Compile and install it like this:
+Then compile and install the out of kernel module like this:
 
 ```
 make
