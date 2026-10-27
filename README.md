@@ -89,7 +89,7 @@ You can watch the output from the `pr_info!()` macro like this:
 sudo dmesg -w
 ```
 
-Once you're in the grove, it's handy to have `dmesg -w` running in one terminal and then run this
+Once you're in the groove, it's handy to have `dmesg -w` running in one terminal and then run this
 each time you need to test a change:
 
 ```sh
