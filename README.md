@@ -48,14 +48,13 @@ make -C .../linux-with-rust-support M=$PWD rust-analyzer
 ## Exact steps for Ubuntu 26.04, 26.10
 
 The quickest and easiest first step is to build this out of tree module for the distribution kernel
-you are already running. To do this, you will need to build this module using the Rust packages
-from Ubuntu, because they are what Ubuntu Rust-for-Linux support is built against.
+you are already running.
 
 From a fresh Ubuntu 26.04 or 26.10 install, you will need to install the following packages,
 including the correct `linux-lib-rust-VERSION` package:
 
 ```sh
-sudo apt install build-essential rust-all pahole linux-lib-rust-`uname -r`
+sudo apt install build-essential pahole linux-lib-rust-`uname -r`
 ```
 
 Which will install something like `linux-lib-rust-7.0.0-38-generic` or
@@ -72,15 +71,6 @@ Unload the module like this:
 
 ```sh
 sudo rmmod rust_out_of_tree
-```
-
-If you already have a Rust install via rustup, you will get an error if you try to compile this
-module because the Rust version does not match what the kernel was built with.  In this case, you
-can tell rustup to use the system install like this:
-
-```sh
-rustup toolchain link system /usr
-rustup default system
 ```
 
 You can watch the output from the `pr_info!()` macro like this:
