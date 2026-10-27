@@ -13,11 +13,11 @@ From a fresh Ubuntu 26.04 or 26.10 install, you will need to install the followi
 including the correct `linux-lib-rust-VERSION` package:
 
 ```
-sudo apt-get install git build-essential rust-all pahole linux-lib-rust-`uname -r`
+sudo apt install git build-essential rust-all pahole linux-lib-rust-`uname -r`
 ```
 
-Which will install something like `linux-lib-rust-7.0.0-38-generic` for the
-`linux-lib-rust-VERSION` package.
+Which will install something like `linux-lib-rust-7.0.0-38-generic` or
+`linux-lib-rust-7.3.0-9-generic`for the `linux-lib-rust-VERSION` package.
 
 Then clone this repo:
 
@@ -37,6 +37,15 @@ Unload the module like this:
 
 ```
 sudo rmmod rust_out_of_tree
+```
+
+If you already have a Rust install via rustup, you will get an error if you try to compile this
+module because the Rust version does not match what the kernel was built with.  In this case, you
+can tell rustup to use the system install like this:
+
+```
+rustup toolchain link system /usr
+rustup default system
 ```
 
 You can watch the output from the `pr_info!()` macro like this:
